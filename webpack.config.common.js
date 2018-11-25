@@ -1,4 +1,3 @@
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
@@ -29,21 +28,7 @@ module.exports = {
   resolve: {
     extensions: [".js"]
   },
-  optimization:
-    process.env.NODE_ENV === "production"
-      ? {
-          minimizer: [
-            new UglifyJsPlugin({
-              uglifyOptions: {
-                compress: true,
-                ecma: 6,
-                mangle: true
-              },
-              sourceMap: false
-            })
-          ]
-        }
-      : {},
   plugins: [new CopyWebpackPlugin([{ from: "static", to: "." }])],
-  devtool: process.env.NODE_ENV === "production" ? false : "cheap-module-source-map"
+  devtool:
+    process.env.NODE_ENV === "production" ? false : "cheap-module-source-map"
 };
