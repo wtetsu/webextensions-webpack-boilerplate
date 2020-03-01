@@ -1,3 +1,5 @@
+![CI](https://github.com/wtetsu/webextensions-webpack-boilerplate/workflows/CI/badge.svg)
+
 # webextensions-webpack-boilerplate
 
 A simple boilerplate for developing WebExtensions using webpack.
