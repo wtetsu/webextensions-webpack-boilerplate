@@ -1,4 +1,4 @@
-![CI](https://github.com/wtetsu/webextensions-webpack-boilerplate/workflows/CI/badge.svg)
+[![Test](https://github.com/wtetsu/webextensions-webpack-boilerplate/workflows/CI/badge.svg)](https://github.com/wtetsu/mouse-dictionary/actions?query=workflow%3ATest)
 
 # webextensions-webpack-boilerplate
 

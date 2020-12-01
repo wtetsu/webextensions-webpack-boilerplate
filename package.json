@@ -15,7 +15,8 @@
     "release-firefox": "NODE_ENV=production npm run build-ff",
     "lint": "eslint src/*.js",
     "test": "jest",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "test-cov": "npm test -- --coverage"
   },
   "dependencies": {},
   "devDependencies": {
