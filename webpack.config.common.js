@@ -1,38 +1,55 @@
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+
+const mode = process.env.NODE_ENV || "development";
+const isProd = mode === "production";
 
 module.exports = {
-  mode: process.env.NODE_ENV || "development",
+  mode,
   entry: {
-    options: "./src/options.js",
-    content: "./src/content.js",
+    options: "./src/options.ts",
+    content: "./src/content.ts",
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: {
-          loader: "babel-loader",
-        },
-      },
-      {
-        test: /\.jsx$/,
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
-            options: { presets: ["@babel/env"] },
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true,
+            },
           },
         ],
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".ts", ".tsx"],
   },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [{ from: "static", to: "." }],
     }),
   ],
-  devtool:
-    process.env.NODE_ENV === "production" ? false : "cheap-module-source-map",
+  devtool: process.env.NODE_ENV === "production" ? false : "cheap-module-source-map",
+
+  optimization: {
+    minimize: isProd,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            pure_funcs: ["console.info", "console.warn", "console.time", "console.timeEnd"],
+          },
+        },
+      }),
+    ],
+  },
 };

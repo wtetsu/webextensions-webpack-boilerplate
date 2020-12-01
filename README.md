@@ -1,5 +1,7 @@
 [![Test](https://github.com/wtetsu/webextensions-webpack-boilerplate/workflows/CI/badge.svg)](https://github.com/wtetsu/mouse-dictionary/actions?query=workflow%3ATest)
 
+[![codecov](https://codecov.io/gh/wtetsu/webextensions-webpack-boilerplate/branch/master/graph/badge.svg?token=Bly5yadIjQ)](https://codecov.io/gh/wtetsu/webextensions-webpack-boilerplate)
+
 # webextensions-webpack-boilerplate
 
 A simple boilerplate for developing WebExtensions using webpack.
