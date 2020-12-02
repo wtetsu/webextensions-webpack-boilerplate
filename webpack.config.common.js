@@ -7,8 +7,9 @@ const isProd = mode === "production";
 module.exports = {
   mode,
   entry: {
-    options: "./src/options.ts",
-    content: "./src/content.ts",
+    options: "./src/options/app.tsx",
+    main: "./src/main/main.ts",
+    background: "./src/background/background.ts",
   },
   module: {
     rules: [
@@ -31,7 +32,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".ts", ".tsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
   plugins: [
     new CopyWebpackPlugin({
