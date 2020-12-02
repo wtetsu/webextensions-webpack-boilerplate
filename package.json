@@ -12,7 +12,7 @@
     "release-chrome": "cross-env NODE_ENV=production npm run build",
     "build-firefox": "webpack --config webpack.config.firefox.js",
     "watch-firefox": "webpack -w --config webpack.config.firefox.js",
-    "release-firefox": "cross-env NODE_ENV=production npm run build-ff",
+    "release-firefox": "cross-env NODE_ENV=production npm run build-firefox",
     "lint": "prettier --check src/**/*.{ts,tsx}",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "test": "jest",
