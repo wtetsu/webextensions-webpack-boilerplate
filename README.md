@@ -10,6 +10,12 @@ A simple boilerplate for developing WebExtensions using webpack.
 - Can create different builds for each browser
 - UnitTests with Jest
 
+| Concern     | Implementation                                |
+| ----------- | --------------------------------------------- |
+| Language    | [TypeScript](https://www.typescriptlang.org/) |
+| Option View | [React](https://reactjs.org/)                 |
+| Testing     | [Jest](https://jestjs.io/)                    |
+
 ## How to develop
 
 Use npm 6+.
