@@ -4,13 +4,13 @@
  * Licensed under MIT
  */
 
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import immer from "immer";
 
 type MainState = {
-  field01: string;
-  field02: string;
-  field03: string;
+  field01?: string;
+  field02?: string;
+  field03?: string;
 };
 
 type Action = {
@@ -23,14 +23,53 @@ const reducer = (state: MainState, action: Action): MainState => {
   });
 };
 
-const initialState: MainState = {
+const defaultState: MainState = {
   field01: "field01 initial value",
   field02: "field02 initial value",
   field03: "field03 initial value",
 };
 
 export const Main: React.FC<MainState> = () => {
-  const [state, dispatch] = useReducer(reducer, { ...initialState });
+  const [state, dispatch] = useReducer(reducer, { ...defaultState });
+
+  const save = () => {
+    const jsonData = JSON.stringify(state);
+    chrome.storage.local.set({ settings: jsonData }, () => {
+      console.debug("saved:" + jsonData);
+    });
+  };
+
+  const restoreDefaults = () => {
+    chrome.storage.local.get(["settings"], (data) => {
+      console.log(data);
+
+      dispatch({ statePatch: defaultState });
+    });
+  };
+
+  useEffect(() => {
+    chrome.storage.local.get(["settings"], (data) => {
+      console.debug("loaded:" + JSON.stringify(data));
+
+      const statePatch = {} as MainState;
+
+      const settings = JSON.parse(data?.settings) as MainState;
+
+      if (settings?.field01 !== undefined) {
+        statePatch.field01 = settings?.field01;
+      }
+      if (settings?.field02 !== undefined) {
+        statePatch.field02 = settings?.field02;
+      }
+      if (settings?.field03 !== undefined) {
+        statePatch.field03 = settings?.field03;
+      }
+
+      console.log(statePatch);
+
+      dispatch({ statePatch });
+    });
+  }, []);
 
   return (
     <>
@@ -54,6 +93,9 @@ export const Main: React.FC<MainState> = () => {
         value={state.field03}
         onChange={(e) => dispatch({ statePatch: { field03: e.target.value } })}
       />
+      <br />
+      <input type="button" value="Save" onClick={save} />
+      <input type="button" value="Restore Defaults" onClick={restoreDefaults} />
     </>
   );
 };

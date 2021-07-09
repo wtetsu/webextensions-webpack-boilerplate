@@ -5,7 +5,7 @@
     "page": "options.html",
     "open_in_tab": true
   },
-  "permissions": ["activeTab"],
+  "permissions": ["storage", "unlimitedStorage", "activeTab"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
