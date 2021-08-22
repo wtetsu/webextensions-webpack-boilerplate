@@ -10,11 +10,11 @@ A simple boilerplate for developing WebExtensions using webpack.
 - Can create different builds for each browser
 - UnitTests with Jest
 
-| Concern     | Implementation                                |
-| ----------- | --------------------------------------------- |
-| Language    | [TypeScript](https://www.typescriptlang.org/) |
-| Option View | [React](https://reactjs.org/)                 |
-| Testing     | [Jest](https://jestjs.io/)                    |
+| Concern  | Implementation                                |
+| -------- | --------------------------------------------- |
+| Language | [TypeScript](https://www.typescriptlang.org/) |
+| Options  | [React](https://reactjs.org/)                 |
+| Testing  | [Jest](https://jestjs.io/)                    |
 
 ## How to develop
 
@@ -40,15 +40,15 @@ For Firefox:
 npm run build-firefox
 ```
 
-### Unit tests
+### Test
 
-Run the all the tests.
+Run all the tests.
 
 ```sh
 npm run test
 ```
 
-And here is an useful way that re-run tests automatically when a file has changed.
+Watch mode.
 
 ```sh
 npm run test-watch
